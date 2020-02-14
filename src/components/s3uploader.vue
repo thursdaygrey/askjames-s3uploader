@@ -73,7 +73,7 @@ export default {
       for (var i = 0; i < binary.length; i++) {
         array.push(binary.charCodeAt(i))
       }
-      let blobData = new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
+      let blobData = new Blob([new Uint8Array(array)], {type: 'application/octet-stream'})
       console.log('Uploading to: ', response.data.uploadURL)
 
       const result = await fetch(response.data.uploadURL, {

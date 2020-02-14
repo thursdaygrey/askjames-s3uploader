@@ -21,7 +21,6 @@ const getUploadURL = async function() {
   var s3Params = {
     Bucket: uploadBucket,
     Key:  `${actionId}`,
-//  ContentType: 'image/jpeg',
     CacheControl: 'max-age=31104000',
     ACL: 'public-read',
   };
