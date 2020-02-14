@@ -62,7 +62,7 @@ export default {
       // Get the presigned URL
       const response = await axios({
         method: 'GET',
-        url: `https://tr49ij83hd.execute-api.us-east-1.amazonaws.com/Prod/'
+        url: 'https://tr49ij83hd.execute-api.us-east-1.amazonaws.com/Prod/'
       })
 
       console.log('Response: ', response.data)
