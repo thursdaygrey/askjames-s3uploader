@@ -6,7 +6,7 @@ const AWS = require('aws-sdk')
 AWS.config.update({ region: process.env.REGION || 'us-east-1' })
 const s3 = new AWS.S3();
 
-const uploadBucket = '<< ENTER YOUR BUCKET NAME HERE >>'   // << LOOK!
+const uploadBucket = 'serverlessrepo-serverless-s3-uploader-s3bucket-kt2n38v8dauv'   // << LOOK!
 
 exports.handler = async (event) => {
   const result = await getUploadURL()
@@ -20,8 +20,8 @@ const getUploadURL = async function() {
 
   var s3Params = {
     Bucket: uploadBucket,
-    Key:  `${actionId}.jpg`,
-    ContentType: 'image/jpeg',
+    Key:  `${actionId}`,
+//  ContentType: 'image/jpeg',
     CacheControl: 'max-age=31104000',
     ACL: 'public-read',
   };
@@ -37,7 +37,7 @@ const getUploadURL = async function() {
       },
       "body": JSON.stringify({
           "uploadURL": uploadURL,
-          "photoFilename": `${actionId}.jpg`
+          "photoFilename": `${actionId}`
       })
     })
   })

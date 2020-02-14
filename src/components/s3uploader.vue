@@ -8,10 +8,10 @@
     </div>
     <div v-else>
       <img :src="image" />
-      <button v-if="!uploadURL" @click="removeImage">Remove image</button>
-      <button v-if="!uploadURL" @click="uploadImage">Upload image</button>
+      <button v-if="!uploadURL" @click="removeImage">Remove file</button>
+      <button v-if="!uploadURL" @click="uploadImage">Upload file</button>
     </div>
-    <h2 v-if="uploadURL">Success! Image uploaded to:</h2>
+    <h2 v-if="uploadURL">Success! File uploaded to:</h2>
     <a :href="uploadURL">{{ uploadURL }}</a>
   </div>
 </template>
@@ -19,7 +19,7 @@
 <script>
 
 import axios from 'axios'
-const MAX_IMAGE_SIZE = 1000000
+const MAX_IMAGE_SIZE = 100000000
 
 export default {
   name: 's3uploader',
@@ -41,11 +41,11 @@ export default {
 
       reader.onload = (e) => {
         console.log('length: ', e.target.result.includes('data:image/jpeg'))
-        if (!e.target.result.includes('data:image/jpeg')) {
+        if (e.target.result.includes('data:image/jpeg')) {
           return alert('Wrong file type - JPG only.')
         }
         if (e.target.result.length > MAX_IMAGE_SIZE) {
-          return alert('Image is loo large - 1Mb maximum')
+          return alert('File is loo large - 100Mb maximum')
         }
 
         this.image = e.target.result
@@ -62,7 +62,7 @@ export default {
       // Get the presigned URL
       const response = await axios({
         method: 'GET',
-        url: `https://k5y741pgj8.execute-api.us-east-2.amazonaws.com/beta`
+        url: `https://tr49ij83hd.execute-api.us-east-1.amazonaws.com/Prod/'
       })
 
       console.log('Response: ', response.data)
